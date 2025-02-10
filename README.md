@@ -1,9 +1,8 @@
-# TheCloudCrew-F24
-F24 15619 Cloud Computing: TheCloudCrew-F24
+# TheCloudCrew-F24\
 
 -----------------
 # Team Members
-Jialin Yu, Yujun Lee, Helom Berhane
+Jialin Yu, Yujun Lee
 
 -----------------
 Step:
