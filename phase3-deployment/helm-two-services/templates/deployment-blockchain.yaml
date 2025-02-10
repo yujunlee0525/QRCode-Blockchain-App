@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.blockchain.releaseName  }}-deployment
+  labels:
+    app: blockchain-app
+spec:
+  replicas: {{  .Values.blockchain.replicaCount }}
+  selector:
+    matchLabels:
+      app: blockchain-app
+      tier: web
+  template:
+    metadata:
+      labels:
+        app: blockchain-app
+        tier: web
+    spec:
+      containers:
+      - name: blockchain
+        image: {{ .Values.blockchain.repository}}/{{ .Values.blockchain.image}}:{{ .Values.blockchain.tag}}
+        ports:
+        - containerPort: 8888
+
+{{/*---*/}}
+{{/*apiVersion: autoscaling/v1*/}}
+{{/*kind: HorizontalPodAutoscaler*/}}
+{{/*metadata:*/}}
+{{/*  name: {{ .Values.chat.releaseName }}-autoscaling*/}}
+{{/*  namespace: default*/}}
+{{/*spec:*/}}
+{{/*  scaleTargetRef:*/}}
+{{/*    apiVersion: apps/v1*/}}
+{{/*    kind: Deployment*/}}
+{{/*    name: {{ .Values.chat.releaseName }}-deployment*/}}
+{{/*  minReplicas: {{ .Values.chat.hpa.minReplicas }}*/}}
+{{/*  maxReplicas: {{ .Values.chat.hpa.maxReplicas }}*/}}
+{{/*  targetCPUUtilizationPercentage: {{ .Values.chat.hpa.targetCPUUtilizationPercentage }}*/}}

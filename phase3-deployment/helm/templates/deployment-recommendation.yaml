@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.recommendation.releaseName  }}-deployment
+  labels:
+    app: {{ .Values.recommendation.releaseName  }}-app
+spec:
+  replicas: {{  .Values.blockchain.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.recommendation.releaseName  }}-app
+      tier: web
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.recommendation.releaseName  }}-app
+        tier: web
+    spec:
+      containers:
+        - name: {{ .Values.recommendation.releaseName  }}
+          image: {{ .Values.qrcode.repository}}/{{ .Values.recommendation.image}}:{{ .Values.recommendation.tag}}
+          ports:
+            - containerPort: 8888

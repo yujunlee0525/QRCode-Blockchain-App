@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.blockchain.releaseName  }}-service
+  labels: 
+    app: blockchain-app
+    tier: web
+spec:
+  type:  {{ .Values.blockchain.service.type}}
+  ports:
+    - port: {{ .Values.blockchain.service.port}}
+      targetPort: {{ .Values.blockchain.service.targetPort}}
+  selector:
+    app: blockchain-app

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.qrcode.releaseName  }}-deployment
+  labels:
+    app: qrcode-app
+spec:
+  replicas: {{  .Values.qrcode.replicaCount }}
+  selector:
+    matchLabels:
+      app: qrcode-app
+      tier: web
+  template:
+    metadata:
+      labels:
+        app: qrcode-app
+        tier: web
+    spec:
+      containers:
+        - name: qrcode
+          image: {{ .Values.qrcode.repository}}/{{ .Values.qrcode.image}}:{{ .Values.qrcode.tag}}
+          ports:
+            - containerPort: 8888

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-deployment
+  labels:
+    app: auth-app
+spec:
+  replicas: {{  .Values.auth.replicaCount }}
+  selector:
+    matchLabels:
+      app: auth-app
+      tier: web
+  template:
+    metadata:
+      labels:
+        app: auth-app
+        tier: web
+    spec:
+      containers:
+        - name: auth
+          image: public.ecr.aws/o1d3p3m0/cmucc-f24-teamproject-auth-rest:arm64
+          ports:
+            - containerPort: 9000

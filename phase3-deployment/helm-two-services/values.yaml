@@ -1,0 +1,42 @@
+blockchain:
+  # TODO: Specify values used in deployment.yaml
+  releaseName: "blockchain"
+  replicaCount: 30
+  repository: 390402562809.dkr.ecr.us-east-1.amazonaws.com
+  image: twitter-phase-2
+  tag: "blockchain-arm-5.0.1"
+  # TODO: Specify values used in service.yaml
+  service: 
+    type: NodePort
+    port: 80
+    targetPort: 8888
+qrcode:
+  # TODO: Specify values used in deployment.yaml
+  releaseName: "qrcode"
+  replicaCount: 30
+  repository: 390402562809.dkr.ecr.us-east-1.amazonaws.com
+  image: twitter-phase-2
+  tag: "qrcode-arm-6.0.0"
+  # TODO: Specify values used in service.yaml
+  service:
+    type: NodePort
+    port: 80
+    targetPort: 8888
+recommendation:
+  releaseName: "recommendation"
+  replicaCount: 30
+  repository: 390402562809.dkr.ecr.us-east-1.amazonaws.com
+  image: twitter-phase-1
+  tag: "recsys-arm-0.0.0"
+  service:
+    type: NodePort
+    port: 80
+    targetPort: 8888
+auth:
+    releaseName: "auth"
+    replicaCount: 2
+    image: public.ecr.aws/o1d3p3m0/cmucc-f24-teamproject-auth-grpc:arm64
+    service:
+        type: ClusterIP
+        port: 9000
+        targetPort: 9000

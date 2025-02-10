@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package com.qrcode.qrCodeApp;
+
+option java_multiple_files = true;
+option java_package = "com.qrcode.qrCodeApp";
+option java_outer_classname = "AuthServiceProto";
+
+service AuthService {
+  rpc Auth (AuthRequest) returns (AuthResponse);
+}
+message AuthRequest {
+  string team_name = 1;
+  int64 timestamp = 2;
+  string decoded_qrcode = 3;
+}
+message AuthResponse {
+  string message = 1;
+  string token = 2;
+}
